@@ -19,3 +19,6 @@ Require the package:
 In your buffer of choice run the command:
 
     <M-x> wooky-mode
+
+* To eval an expression under cursor, press <kbd>C-M-x</kbd>.
+* To reload the page in browser – <kbd>C-x r</kbd>.
