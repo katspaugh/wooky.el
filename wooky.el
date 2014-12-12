@@ -75,7 +75,7 @@
 
 (let ((id 0))
   (defun wooky-next-rpc-id ()
-    (incf id)))
+    (setq id (1+ id))))
 
 (let ((obarray '()))
   (defun wooky-add-hook (id func)
@@ -120,36 +120,32 @@
           (json-read))))))
 
 (defun wooky-get-completions (tabs)
-  (let ((index 0) candidates)
+  (let ((candidates))
     (mapc
      (lambda (tab)
        (let ((url (plist-get tab :url)))
          (when (string-match "^http" url)
-           (push (cons (format "%s (%s)" url (incf index)) tab)
+           (push (cons url tab)
                  candidates))))
      tabs) candidates))
 
 (defun wooky-connect (host port)
   (let ((tabs (wooky-get-tabs host port)))
     (if tabs
-        (let* ((completions (wooky-get-completions tabs))
-               (choice (completing-read
-                        "Choose a tab: "
-                        completions nil t ""
-                        'wooky-tab-history
-                        (caar completions)))
-               (socket-info (cdr (assoc choice completions)))
-               (socket-id (plist-get socket-info :id))
-               (socket-url (plist-get socket-info :webSocketDebuggerUrl)))
-          (cond (socket-url
-                 (wooky-websocket-open socket-url socket-id))
-                (socket-id
-                 (let ((sock (cdr (assoc socket-id wooky-sockets-alist))))
-                   (message "Wooky: connected to previously opened socket")
-                   (wooky-set-socket sock)))))
+        (let ((completions (wooky-get-completions tabs)))
+          (let ((choice (completing-read
+                         "Choose a tab: "
+                         completions nil t ""
+                         'wooky-tab-history
+                         (caar completions))))
+            (let ((socket-info (cdr (assoc choice completions))))
+                 (wooky-websocket-open
+                  (plist-get socket-info :webSocketDebuggerUrl)
+                  (plist-get socket-info :id)))))
+      ;; No Chrome launched?
       (progn
-        (wooky-mode -1)
-        (message "Wooky: cannot connect to %s:%d" host port)))))
+        (message "Wooky: cannot connect to %s:%d" host port)
+        (wooky-mode -1)))))
 
 (defun wooky-websocket-open (url id)
   (let ((buf (current-buffer)))
