@@ -25,7 +25,7 @@ In your buffer of choice run the command:
 
 ## Credits
 
-Inspired and borrowed code from:
+Inspired by and borrowed code from:
 
  * [Kite](https://github.com/jscheid/kite)
  * [Mini Kite](https://github.com/tungd/kite-mini.el)
