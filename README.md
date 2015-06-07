@@ -1,7 +1,8 @@
 wooky.el
 ========
 
-Eval-defun for JavaScript in Chrome
+Eval JavaScript expressions and live-reload scriprs in Chrome from
+Emacs buffers.
 
 ![Imgur](http://i.imgur.com/uMJNFjE.png)
 
@@ -9,8 +10,7 @@ Eval-defun for JavaScript in Chrome
 
 Open your Chrome with remote debugging enabled:
 
-    open -a /Applications/Google\ Chrome.app \
-    --args "--remote-debugging-port=9222"
+     open -a "Google Chrome" --args "--remote-debugging-port=9222"
 
 Require the package:
 
@@ -20,5 +20,5 @@ In your buffer of choice run the command:
 
     <M-x> wooky-mode
 
-* To eval an expression under cursor, press <kbd>C-M-x</kbd>.
-* To reload the page in browser – <kbd>C-x r</kbd>.
+ * <kbd>C-x w e</kbd> to evaluate region or expression at point
+ * <kbd>C-x w u</kbd> to live-update the script
