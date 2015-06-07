@@ -4,9 +4,9 @@
 
 ;; Author: katspaugh
 ;; Keywords: tools
-;; URL: https://github.com/katspaugh/.emacs.d
+;; URL: https://github.com/katspaugh/wooky.el
 ;; Version: 0.0.2
-;; Package-Requires: ((emacs "24") (json "1.4") (websocket "1.1"))
+;; Package-Requires: ((emacs "24") (json "1.4") (websocket "1.1") (js2-mode "20150524"))
 
 ;;; Usage:
 
@@ -213,7 +213,7 @@
 
 ;;; Find function bounds at point
 
-;; See https://github.com/swank-js/swank-js/slime-js.el
+;; See https://github.com/swank-js/swank-js
 
 (defun wooky--start-of-toplevel-form ()
   "Beginning of top-level form."
