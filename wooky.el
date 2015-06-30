@@ -6,7 +6,7 @@
 ;; Keywords: tools
 ;; URL: https://github.com/katspaugh/wooky.el
 ;; Version: 0.0.2
-;; Package-Requires: ((emacs "24") (json "1.4") (websocket "1.1") (js2-mode "20150524"))
+;; Package-Requires: ((emacs "24.3") (json "1.4") (websocket "1.1") (js2-mode "20150524"))
 
 ;;; Usage:
 
@@ -299,6 +299,7 @@
     (setq wooky--socket nil))
   (setq wooky--scripts nil))
 
+;;;###autoload
 (define-minor-mode wooky-mode
   "Minor mode to evaluate JavaScript in a remote WebKit debugger."
   :global nil :group 'wooky :init-value nil :lighter " Wooky"
