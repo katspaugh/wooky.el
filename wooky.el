@@ -218,7 +218,7 @@
 (defun wooky--start-of-toplevel-form ()
   "Beginning of top-level form."
   (when js2-mode-buffer-dirty-p
-    (js2-mode-wait-for-parse #'wooky-start-of-toplevel-form))
+    (js2-mode-wait-for-parse #'wooky--start-of-toplevel-form))
   (js2-forward-sws)
   (if (= (point) (point-max))
       (js2-mode-forward-sexp -1)
