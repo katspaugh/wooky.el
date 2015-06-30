@@ -299,6 +299,7 @@
     (setq wooky--socket nil))
   (setq wooky--scripts nil))
 
+;;;###autoload
 (define-minor-mode wooky-mode
   "Minor mode to evaluate JavaScript in a remote WebKit debugger."
   :global nil :group 'wooky :init-value nil :lighter " Wooky"
